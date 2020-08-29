@@ -10,13 +10,13 @@ logger.trace('hi') // prints nothing
 logger.error('hi') // prints nothing
 logger.log('hi') // prints nothing
 
-logger.write() /* prints `
-INFO:hi there
+logger.write() /* prints `INFO:hi there
 DEBUG:hi world
 FATAL:hello world
 TRACE:hi
 ERROR:hi
-LOG:hi`
+LOG:hi
+`
 */
 
 const logger = LazyLogger({delimiter: ':::'})
@@ -27,5 +27,6 @@ logger.trace('hi') // prints nothing
 logger.error('hi') // prints nothing
 logger.log('hi') // prints nothing
 
-logger.write() // prints `INFO:hi there -- DEBUG:hi world -- FATAL:hello world -- TRACE:hi -- ERROR:hi -- LOG:hi`
+logger.write() // prints `INFO:hi there -- DEBUG:hi world -- FATAL:hello world -- TRACE:hi -- ERROR:hi -- LOG:hi
+`
 ```
