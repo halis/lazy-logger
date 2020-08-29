@@ -1,5 +1,5 @@
 
-const LazyLogger = ({stdout = console.log} = {}) => {
+const LazyLogger = ({stdout = process.stdout.write.bind(process.stdout), delimiter = '\n'} = {}) => {
     try {
         let logs = []
         const log = (...any) => logs.push({level: 'log', data: any})
@@ -14,12 +14,32 @@ const LazyLogger = ({stdout = console.log} = {}) => {
                 logs = []
                 return
             }
+            let ctr = 0
+            let str = ''
             for (const message of logs) {
+                if (ctr > 0) {
+                    str += delimiter
+                }
+                ctr++
                 const {level, data} = message
-                const string = `${level.toUpperCase()}:`.padEnd(6)
-                stdout(string, ...data)
+                str += `${level.toUpperCase()}:`
+                let c = 0
+                data.map(x => {
+                    if (c > 0) {
+                        str += ' '
+                    }
+                    c++
+                    if (typeof x === 'object') {
+                        str += JSON.stringify(x)
+                        return
+                    }
+                    str += x
+                })
             }
+            str += '\n'
             logs = []
+            stdout(str)
+            return str
         }
 
         const clear = () => {

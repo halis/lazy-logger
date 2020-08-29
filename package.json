@@ -4,7 +4,9 @@
   "description": "A logger that will store logs in memory until you are ready to write them to STDOUT",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./src/**/*.test.js"
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "mocha ./src/**/*.test.js",
+    "test:integration": "mocha ./src/**/*.integration.js"
   },
   "repository": {
     "type": "git",
