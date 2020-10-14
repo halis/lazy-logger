@@ -43,6 +43,8 @@ go()
 
 Then in CloudWatch you will only have a single log entry for this request:
 
+```
 INFO:RequestID: 1234 -- INFO:Read 4 records from the db -- INFO:DB Result: {"msg":"Successfully wrote 4 records"} -- ERROR:ReferenceError: intentional is not defined      at go (/Users/asdf/lazy-logger/example.js:20:9)
+```
 
 If you need to log deeper than the top level, then I would recommend passing the logger down to any function that you want to log.
