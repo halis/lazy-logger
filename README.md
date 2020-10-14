@@ -2,7 +2,7 @@
 A logger that will store logs in memory until you are ready to write them to STDOUT
 
 ```js
-const logger = LazyLogger({delimiter: ':::'})
+const logger = LazyLogger()
 logger.info('hi there') // prints nothing
 logger.debug('hi world') // prints nothing
 logger.fatal('hello world') // prints nothing
@@ -19,7 +19,7 @@ LOG:hi
 `
 */
 
-const logger = LazyLogger({delimiter: ':::'})
+const logger = LazyLogger({delimiter: '--'})
 logger.info('hi there') // prints nothing
 logger.debug('hi world') // prints nothing
 logger.fatal('hello world') // prints nothing
