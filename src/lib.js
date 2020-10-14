@@ -1,5 +1,9 @@
 
-const LazyLogger = ({stdout = process.stdout.write.bind(process.stdout), delimiter = '\n'} = {}) => {
+const LazyLogger = ({
+    stdout = process.stdout.write.bind(process.stdout), 
+    delimiter = ' -- ',
+    replaceNewlines = true,
+} = {}) => {
     try {
         let logs = []
         const log = (...any) => logs.push({level: 'log', data: any})
@@ -18,7 +22,7 @@ const LazyLogger = ({stdout = process.stdout.write.bind(process.stdout), delimit
             let str = ''
             for (const message of logs) {
                 if (ctr > 0) {
-                    str += delimiter
+                    str += '%%%###'
                 }
                 ctr++
                 const {level, data} = message
@@ -36,7 +40,11 @@ const LazyLogger = ({stdout = process.stdout.write.bind(process.stdout), delimit
                     str += x
                 })
             }
+            if (replaceNewlines === true) {
+                str = str.replace(/\n+/g, '  ')
+            }
             str += '\n'
+            str = str.replace(/%%%###/g, delimiter)
             logs = []
             stdout(str)
             return str
