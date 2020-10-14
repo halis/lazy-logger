@@ -33,7 +33,7 @@ const go = async () => {
 
         intentional.error()
     } catch (e) {
-        logger.error(e.stack)
+        logger.error(e)
     } finally {
         logger.write() // writes `INFO:RequestID: 1234 -- INFO:Read 4 records from the db -- INFO:DB Result: {"msg":"Successfully wrote 4 records"} -- ERROR:ReferenceError: intentional is not defined      at go (/Users/asdf/lazy-logger/example.js:20:9)`
     }

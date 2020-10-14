@@ -33,7 +33,10 @@ const LazyLogger = ({
                         str += ' '
                     }
                     c++
-                    if (typeof x === 'object') {
+                    if (x instanceof Error) {
+                        str += x.stack
+                        return
+                    } else if (typeof x === 'object') {
                         str += JSON.stringify(x)
                         return
                     }
